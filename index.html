@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <title>Weather App</title>
+</head>
+
+<body>
+    <div id="root" class="home">
+        <div class="weather-card" :style="{'background-image': 'url(' + image + ')'  }">
+            <div class="search">
+                <input @keyup.enter="getweather" type="text" v-model="theCity" class="search-bar" placeholder="search">
+                <button @click="getweather"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+            </div>
+            <div v-if="show" class="weather">
+                <h2 class="city">Weather in {{city}}</h2>
+                <h1 class="temp">{{temp}}°C</h1>
+                <div class="flex">
+                    <img :src="icon" alt="" class="icon">
+                    <div class="descrepssion">{{descrep}}</div>
+                </div>
+                <div class="humidity">humidity : {{humidity}}%</div>
+                <div class="wind">wind speed : {{wind}}km/h</div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="vuejs/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        var ve = new Vue({
+            el: '#root',
+            data: {
+                show: false,
+                image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhIVFRUXFxUXFxUVFxUXFxUVFxUXFxcVFRcYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIALcBEwMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAABAAIDB//EAB8QAQEBAQACAgMBAAAAAAAAAAABEQISITFBUXGRYf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDxKRYYYCxQ4sBSNURvPYM4pGrCCxlvBAEisaw4DNTVQKcqqN34BhGrQMSjWAwmkDEWNDAZxY0sBnB4uniryDniaxYDFgsbxWAxgxvDgOeJvCDjhNhkAYuWpFgLDTIYAiVPNBQYTgCHDIbAUZrYwAcVOgBjSwBI3GcIC8/eg2DAWoiArDIZfyMBLDFQYkOEyAzgxvADGJqxWAwigc1DTAChsWAos9nDIApxWEBITFQSMMBmHGsWAxYcanKoMwtWMgmhPZkwGehrfbOaCgxrEANno4YDPirG7BgM4jiAM1uxkBWbWxQYDpOYgcjA2AsUiagDDipBnCjQUhUMAYUIDUho08gorV1RAPVUa5q5nyDEbsUi6AdCRvqLmAxYpG8pvP8AgMyGLo4AwVtigGTaryAwWEAmagC1KIGcKw4AaBgKRYooDNhOLANGnwM5BJqM0CcOgEYLD4g1K1z7Yxq/AHWZGToN8rFDoGKLVaCxYrRQWLuM2jrsAzWmaAZIoDFCzaBTMtQKUjCCRigKQpAh0cFBeR5pnJnIGDDgoGFRUCoMINfTOro4AlUawQDVPkyK+gO/k6zjQCjV1QA0VqigqxWhoM0VuiwGMZsbokBnE1YQYSFAymUHkGuUOaQMVhhBSCm0ApUFYB36XVRoGfCgaBfakUhgIqVAYiKChGjQNrJVBm0NM0ELViAUaTyDFEdKzYDNLNQM6y0zaBka5GkG+IYzzWwWhqwYAKQI4LTKBioUBrFKtWgUyZQW/wAMRA6OaVAQqQDSBoK1UWCgkhQI1WrQFFNrPQDSx5IELy0AUixqKwFy1KCBtMZIKrVUClItVBQz9jlWg3osZh0DRKlzQdCwtBsBSgcQQK0C1aBtZtVooIs6tBVDRoG1m1Ws2+gOBjUDepEDyqotAkEDKgYBTJ0AJfaxmz2DpDYzGtAY1INQBqJQDVBDKCS1WgdGpmUERiAjRaKBrNOighSKArPV9NdM2gJYmbEDZEIHVoINQsStaBiC0FKoKLQahwcq0Dp1z8m4CtSUAnWSDSZ1AabWdQNaJRatBoazqtBBatALSAGq1CwF1QbGYC9IIC0kBSQKJICsSAWM2pA6QWpAzzjSQGVakCh1IFqtSASpID10NSBM6kCSQEpABUgFZ1IBpSB//9k=",
+                theCity: "",
+                city: "cairo",
+                temp: 28,
+                descrep: "sunny",
+                humidity: "60",
+                wind: 6.2,
+                weatherData: {},
+                icon: "https://openweathermap.org/img/wn/01n@2x.png",
+            },
+            methods: {
+                async getweather() {
+                    let weather = {
+                        "apiKey": "4409d7080cbe93b47429c082fafacaa9"
+                    };
+                    await axios.get((`https://api.openweathermap.org/data/2.5/weather?q=${this.theCity}&units=metric&appid=${weather.apiKey}`))
+                        .then(({ data: mydata }) => {
+                            let res = mydata;
+                            this.weatherData = res;
+                        });
+                    this.city = this.weatherData.name;
+                    this.temp = this.weatherData.main.temp;
+                    this.wind = this.weatherData.wind.speed;
+                    this.humidity = this.weatherData.main.humidity;
+                    this.descrep = this.weatherData.weather[0].description;
+                    this.icon = `https://openweathermap.org/img/wn/${this.weatherData.weather[0].icon}@2x.png`;
+                    document.querySelector("body").style.backgroundImage = `url(https://source.unsplash.com/1600x900/?${this.city})`;
+                    this.show = true;
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

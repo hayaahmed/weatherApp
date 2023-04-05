@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+$dark: #222;
+
+html {
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-image: url('https://source.unsplash.com/1600x900/?landscape');
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 120%;
+
+        .weather-card {
+            background-color: #000000;
+            color: white;
+            padding: 2rem;
+            margin: 1rem;
+            border-radius: 20px;
+            max-width: 500px;
+
+            @media (max-width:768px) {
+                max-width: 360px;
+                margin-left: 7.5px;
+                margin-right: 7.5px;
+
+            }
+
+            width: 100%;
+
+            .search {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                input {
+                    border: 0;
+                    outline: none;
+                    border-radius: 20px;
+                    padding: 0.4rem 1rem;
+                    background-color: #1a1919;
+                    color: white;
+                    font-family: inherit;
+                    font-size: 105%;
+                    width: calc(100% - 80px);
+                }
+
+                button {
+                    margin: 0.5rem;
+                    background-color: #1a1919;
+                    border-radius: 50%;
+                    height: 43px;
+                    width: 43px;
+                    border: 0;
+                    outline: none;
+                    color: white;
+                    cursor: pointer;
+                    transition: 0.2s ease-in-out;
+
+                    &:hover {
+                        background-color: #2f2a2a;
+                    }
+
+                    i {
+                        font-size: 1rem;
+                        width: 2rem;
+                        height: 1rem;
+                    }
+                }
+            }
+
+            .weather {
+                // &.loading {
+                //     visibility: hidden;
+                // }
+
+                .city {
+                    &:hover {
+                        color: rgb(88, 126, 198);
+                        transform: translateX(5px);
+                    }
+                }
+
+                .temp {
+                    margin-bottom: 0.4rem;
+                }
+
+
+
+                .flex {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        width: 70px;
+                        height: 70px;
+                    }
+
+                    .descrepssion {
+                        text-transform: capitalize;
+                        margin-left: 10px;
+                        color: rgb(88, 126, 198);
+                        font-weight: bold;
+                        font-size: 20px;
+                    }
+                }
+
+                .humidity,
+                .wind {
+                    font-size: 21px;
+                    margin-bottom: 10px;
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+}

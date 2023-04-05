@@ -1,0 +1,116 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  background-image: url("https://source.unsplash.com/1600x900/?landscape");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Open Sans", sans-serif;
+  font-size: 120%;
+}
+html body .weather-card {
+  background-color: #000000;
+  color: white;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  html body .weather-card {
+    max-width: 360px;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+  }
+}
+html body .weather-card .search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+html body .weather-card .search input {
+  border: 0;
+  outline: none;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  background-color: #1a1919;
+  color: white;
+  font-family: inherit;
+  font-size: 105%;
+  width: calc(100% - 80px);
+}
+html body .weather-card .search button {
+  margin: 0.5rem;
+  background-color: #1a1919;
+  border-radius: 50%;
+  height: 43px;
+  width: 43px;
+  border: 0;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+html body .weather-card .search button:hover {
+  background-color: #2f2a2a;
+}
+html body .weather-card .search button i {
+  font-size: 1rem;
+  width: 2rem;
+  height: 1rem;
+}
+html body .weather-card .weather .city:hover {
+  color: rgb(88, 126, 198);
+  -webkit-transform: translateX(5px);
+          transform: translateX(5px);
+}
+html body .weather-card .weather .temp {
+  margin-bottom: 0.4rem;
+}
+html body .weather-card .weather .flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+html body .weather-card .weather .flex img {
+  width: 70px;
+  height: 70px;
+}
+html body .weather-card .weather .flex .descrepssion {
+  text-transform: capitalize;
+  margin-left: 10px;
+  color: rgb(88, 126, 198);
+  font-weight: bold;
+  font-size: 20px;
+}
+html body .weather-card .weather .humidity,
+html body .weather-card .weather .wind {
+  font-size: 21px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
